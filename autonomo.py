@@ -1,3 +1,6 @@
+##Componentes Daniel Lucas dos Reis Silva
+##Pedro Avelino Soares
+
 class Estado:
     def __init__(self,inicial,final):
         self.inicial=inicial
@@ -29,14 +32,15 @@ class Estado:
 class Linguagem:
     def __init__(self,palavra):
         self.palavra=palavra
+class ConversorAFD:
+    def __init__(self,autonomo):
+        self.autonomo=autonomo
 
 class Teste:
-    def __init__(self,estados,ini,finais,lambdas,posicao):
+    def __init__(self,estados,ini,finais):
         self.estados=estados
         self.ini=ini
         self.finais=finais
-        self.lam=lambdas
-        self.posicao=posicao
     def Cadeia(self):
         cadeia=input("Digite a cadeia")
         self.entradas=[]
@@ -65,27 +69,37 @@ class Teste:
             print("q{}".format(self.atual))
     def inpercorrer(self):             
         self.atual=self.ini
-        self.atuais=[self.ini]
+        self.atuais=[self.atual,"998","997","996","999"]
         found=False
-        caminhos=[]
+        caminhos=0
         for i in range(len(self.entradas)):
-            for q in range(len(self.estados)):  
-                
-                for c in range(len(self.estados)):
-                    if self.estados[q].afnd[c][1]==self.entrada[i]:
-                        if self.atual==self.estados[q].afnd[c][0]:
-                            caminhos.append(c)
-                    elif self.atual==self.lam[self.posicao]:
-                        print("Chegou aqui")
-            if found==False:
-                print("Cadeia não aceita")
-                break
+            elem=self.entradas[i]
+            for estado in self.estados:  
+                for l in range(len(estado.afnd)): 
+                    if elem==estado.afnd[l][1] or estado.afnd[l][1]=="666":
+                        for c in range(len(self.atuais)):
+                           if self.atuais[c]==estado.afnd[l][0]:
+                               self.atuais[c]=estado.afnd[l][2]
+                               found=True
+                               caminhos=caminhos+1
+            print("Caminhos encontrados:{}\n".format(caminhos))
+    
             if i!=len(self.entradas)-1:
                 found=False
             if i==len(self.entradas)-1:
-                if self.verificar()==True:
+                if self.inverificar()==True:
                     break
             print("q{}".format(self.atual))
+    def inverificar(self):
+        for i in self.finais:
+            for t in range(len(self.atuais)):    
+                if str(self.atuais[t])==str(i):
+                    print("Cadeia aceita")
+                    print(self.entradas)
+                    print(self.atuais)
+                    return True
+        print("Cadeia não aceita")
+        return False
     def verificar(self):
         for i in self.finais:
             if str(self.atual)==str(i):
@@ -100,7 +114,6 @@ def adicionarLinguagem():
     print("Em desenvolvimento no futuro.")
     regra=input("Qual a regra?").split()
     
-
 
 def criarAutonomo(estado_inicial):
     n=int(input("Quantos estados tem nesse AFD?:\n"))
@@ -162,19 +175,22 @@ def Interface():
         if op==1:
             estados,estado_inicial,estados_finais=criarAutonomo(estado_inicial)
         elif op==2:
-            estados,esta_inicial,estados_finais,p,lambdas=criarAFND(estado_inicial)
+            estados,estado_inicial,estados_finais,p,lambdas=criarAFND(estado_inicial)
         elif op==666:
             break
         elif op==3:
             print("Em desenvolvimento.")
             #adicionarLinguagem()
         elif op==4:
-            teste=Teste(estados,estado_inicial,estados_finais,lambdas,p)
+            teste=Teste(estados,estado_inicial,estados_finais)
             teste.Cadeia()
             teste.percorrer()
         elif op==5:
             print("Em desenvolvimento de excessões, cadeias extensão são serão aceitas devido a limitação de tempo")
-            teste.Teste(estados,estado_inicial,estados_finais,lambdas,p)
+            print("Funcionando,aceita lambdas e self")
+            teste=Teste(estados,estado_inicial,estados_finais)
+            teste.Cadeia()
+            teste.inpercorrer()
         elif op==6:
             print(estados)
         elif op==7:
@@ -185,5 +201,6 @@ def Interface():
         
             
 def main():
+    print("Componentes:\nDaniel Lucas dos Reis Silva\nPedro Avelino Soares\n")
     Interface()
 main()
