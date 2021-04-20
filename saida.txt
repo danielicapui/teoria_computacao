@@ -1,0 +1,78 @@
+Digite 0 para criar um autonomo;
+Digite 1 para criar a pilha;
+Digite 2 para criar a cadeia de entrada;
+Digite 3 para testar a cadeia;
+Digite 666 para sair do programa:
+Digite a quantidade de estados:
+0==falso
+1==Verdade
+
+Digite o nome do estado:
+Este é um estado inicial:
+Este é um estado final:
+Defina quantas ligações q0 tem:
+Ligações são da forma e são separadas pelo símbolo ',' [entrada,pilha_topo,destino,producao]
+Digite a ligação de número l0:
+Digite a ligação de número l1:
+Digite a ligação de número l2:
+Digite o nome do estado:
+Este é um estado inicial:
+Este é um estado final:
+Defina quantas ligações q1 tem:
+Ligações são da forma e são separadas pelo símbolo ',' [entrada,pilha_topo,destino,producao]
+Digite a ligação de número l0:
+Digite a ligação de número l1:
+Digite o nome do estado:
+Este é um estado inicial:
+Este é um estado final:
+Defina quantas ligações q2 tem:
+Ligações são da forma e são separadas pelo símbolo ',' [entrada,pilha_topo,destino,producao]
+Digite a ligação de número l0:
+Digite a ligação de número l1:
+Digite a ligação de número l2:
+Digite 0 para criar um autonomo;
+Digite 1 para criar a pilha;
+Digite 2 para criar a cadeia de entrada;
+Digite 3 para testar a cadeia;
+Digite 666 para sair do programa:
+Digite o símbolo inicial:
+Digite 0 para criar um autonomo;
+Digite 1 para criar a pilha;
+Digite 2 para criar a cadeia de entrada;
+Digite 3 para testar a cadeia;
+Digite 666 para sair do programa:
+Digite a cadeia que vai ser testada:
+Digite 0 para criar um autonomo;
+Digite 1 para criar a pilha;
+Digite 2 para criar a cadeia de entrada;
+Digite 3 para testar a cadeia;
+Digite 666 para sair do programa:
+
+
+Simbolo: a
+Fila: A
+Estado atual: q0
+Destino:q1
+Produção:A
+
+
+Simbolo: a
+Fila: A
+Estado atual: q1
+Destino:q2
+Produção:l
+
+
+Simbolo: b
+Fila: A
+Estado atual: q2
+Destino:666
+Produção:666
+
+
+Cadeia não aceita
+Digite 0 para criar um autonomo;
+Digite 1 para criar a pilha;
+Digite 2 para criar a cadeia de entrada;
+Digite 3 para testar a cadeia;
+Digite 666 para sair do programa:
