@@ -16,22 +16,28 @@ class Estado:
             if indice[0]==simbolo and indice[1]==pilha_topo:
                 return indice[2],indice[3]
         return 666,666
+    def __str__(self):
+        return ("Nome:{}\nInicial:{}\nFinal:{}\nLigações:{}\n".format(self.getNome(),self.getTipo()[0],self.getTipo()[1],self.getLigacao()))
 class Pilha:
     def __init__(self,valorinicial):
         self.fila=valorinicial
     def getFila(self):
         return self.fila
     def adicionaFila(self,valor):
-        for i in valor:
-            self.getFila().append(i)
+        if self.isVazia()==False:
+            self.removerFila()
+        for i in reversed(valor):
+            self.getFila().insert(0,i)
     def removerFila(self):
-        self.getFila().pop()
+        self.getFila().pop(0)
     def isVazia(self):
         if len(self.getFila())==0 or self.getFila()[0] in ["l","lambda","666"]:
             print("Fila:",self.getFila())
             return True
         else:
             return False
+    def __str__(self):
+        return ("Contéudo:{}".format(self.getFila()))
 
 
 
@@ -59,17 +65,17 @@ class Teste:
         for i in self.getEstados():
             if i.getNome()==destino:
                 self.atual=i
-                return True
-        
-                
+                return i      
         print("Cadeia não aceita")
         return False
+    
     def trilha(self):
         c=0
         letra="nada"
+        self.getEstado_Inicial()
         for simbolo in self.getCadeia():
             if self.getPilha().isVazia!=False:
-                topo=self.getPilha().getFila()[-1]
+                topo=self.getPilha().getFila()[0]
             else:
                 topo="l"
             print("Simbolo:",simbolo)
@@ -77,7 +83,7 @@ class Teste:
             print("Estado atual:",self.atual.getNome())
             dado=self.atual.moverEstado(simbolo,topo)
             print("Destino:{}\nProdução:{}".format(dado[0],dado[1]))
-            print("\n")
+            
             if dado[0]==666 and dado[1]==666:
                 print("Cadeia não aceita")
                 return False
@@ -85,10 +91,14 @@ class Teste:
                 self.getPilha().removerFila()
             else:
                 self.getPilha().adicionaFila(dado[1])
-            self.getAtual(dado[0])
+            
+            print("Pilha: {}".format(self.getPilha().getFila()))
+            print("\n")
+            self.atual=self.getAtual(dado[0])
             c=c+1
             letra=simbolo
-        if self.atual.getTipo()[1]==1 and c==len(self.getCadeia()) and letra==self.getCadeia()[-1] and self.getPilha().isVazia()==True:
+        print(self.atual)
+        if self.atual.getTipo()[1]==1 and str(c)==str(len(self.getCadeia())) and str(letra)==str(self.getCadeia()[-1]) and self.getPilha().isVazia()==True:
             print("cadeia aceita")
             return True
         else:
@@ -102,13 +112,12 @@ def criarAutonomo():
     #Preciso da quantidade de estados do autonomo, do nome,do tipo 
     quantidade=int(input("Digite a quantidade de estados:\n"))
     estados=[]
-    tipos=[0,0]
     print("0==falso\n1==Verdade\n")
     for i in range(quantidade):
-        
+        tipos=[]
         nome=input("Digite o nome do estado:\n")
-        tipos[0]=int(input("Este é um estado inicial:\n"))
-        tipos[1]=int(input("Este é um estado final:\n"))
+        tipos.append(int(input("Este é um estado inicial:\n")))
+        tipos.append(int(input("Este é um estado final:\n")))
         numero=int(input("Defina quantas ligações {} tem:\n".format(nome)))
         ligacao=[]
         
@@ -130,7 +139,7 @@ def criarPilha():
     valor=[]
     t=input("Digite o símbolo inicial:\n")
     for letra in t:
-        valor.append(t)
+        valor.append(letra)
     p=Pilha(valor)
     return p
 
