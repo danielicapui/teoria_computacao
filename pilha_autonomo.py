@@ -31,7 +31,7 @@ class Pilha:
     def removerFila(self):
         self.getFila().pop(0)
     def isVazia(self):
-        if len(self.getFila())==0 or self.getFila()[0] in ["l","lambda","666"]:
+        if self.getFila()==[] or self.getFila()[0] in ["l","lambda","666"]:
             print("Fila:",self.getFila())
             return True
         else:
@@ -74,10 +74,10 @@ class Teste:
         letra="nada"
         self.getEstado_Inicial()
         for simbolo in self.getCadeia():
-            if self.getPilha().isVazia!=False:
-                topo=self.getPilha().getFila()[0]
-            else:
+            if self.getPilha().isVazia()==True:
                 topo="l"
+            else:
+                topo=self.getPilha().getFila()[0]
             print("Simbolo:",simbolo)
             print("Fila:",topo)
             print("Estado atual:",self.atual.getNome())
